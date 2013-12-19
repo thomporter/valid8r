@@ -88,16 +88,29 @@ Kitchen Sink demo.  See each language's documentation for more.
 
 #### For JavaScript: 
 
-Just go into the `examples` folder and run:
+Clone the [JavaScript repo](https://github.com/thomporter/valid8r_node) and run npm install & start in the examples folder:
 
+	git clone https://github.com/thomporter/valid8r_js
+	cd valid8r_js/examples
 	npm install
 	npm start
 
 Then you can access http://localhost:3737 to see the examples.
 
-You can also setup the JavaScript examples folder to run under a webserver
+You can also setup the JavaScript examples folder to run under a web server
 you already have setup - eg, the JavaScript Kitchen Sink Demo on my website
 is running under Apache.
+
+#### For Node:
+
+Clone the [Node repo](https://github.com/thomporter/valid8r_node), change into the directory and run npm install & start:
+
+	git clone https://github.com/thomporter/valid8r_node
+	cd valid8r_node
+	npm install
+	npm start
+
+Then you can access http://localhost:3737 to see the examples. 
 
 #### For PHP: 
 
@@ -105,15 +118,6 @@ The PHP repo includes an examples directory.  Set it up on an PHP server and
 you can test it out.  I've only tested it under Apache, but any PHP environment
 *should* work.  If you have any issues, please let me know.  
 (NOTE: JavaScript is disabled in the PHP example.)
-
-#### For Node:
-
-Clone the node repo, change into the directory and run:
-
-	npm install
-	npm start
-
-Then you can access http://localhost:3737 to see the examples. 
 
 ## Installation
 
