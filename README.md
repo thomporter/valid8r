@@ -5,7 +5,7 @@
 Valid8r is a validation library written for multiple programming languages, but
 all using a common configuration file.  Create a single JSON file defining
 rules for fields, and then use that file to validate data in the browser 
-via JavaScript, or on the server via PHP (Node support coming soon, other 
+via JavaScript, or on the server via PHP or Node (other 
 languages may be added in the future.)
 
 ## Demo
@@ -86,16 +86,34 @@ PHP:
 Each language has it's own `examples` folder, which for now just has the
 Kitchen Sink demo.  See each language's documentation for more.
 
- 
+#### For JavaScript: 
+
 Just go into the `examples` folder and run:
 
 	npm install
 	npm start
-	
-The `php` includes an examples directory.  Set it up on an PHP server and
+
+Then you can access http://localhost:3737 to see the examples.
+
+You can also setup the JavaScript examples folder to run under a webserver
+you already have setup - eg, the JavaScript Kitchen Sink Demo on my website
+is running under Apache.
+
+#### For PHP: 
+
+The PHP repo includes an examples directory.  Set it up on an PHP server and
 you can test it out.  I've only tested it under Apache, but any PHP environment
-*should* work.  If you have any issues, please let me know.  The `js` folder
-can also be accessed this way (JavaScript is disabled in the PHP example.)
+*should* work.  If you have any issues, please let me know.  
+(NOTE: JavaScript is disabled in the PHP example.)
+
+#### For Node:
+
+Clone the node repo, change into the directory and run:
+
+	npm install
+	npm start
+
+Then you can access http://localhost:3737 to see the examples. 
 
 ## Installation
 
@@ -105,19 +123,30 @@ folder.
 Note: The PHP class is name-spaced for PHP5 - feel free to change that to suit 
 your needs.
 
-Alternatively, you can clone this repo:
+Alternatively, you can clone the repos you need:
 
-`git clone https://github.com/thomporter/valid8r`
+	git clone https://github.com/thomporter/valid8r_js
+	git clone https://github.com/thomporter/valid8r_php
+	git clone https://github.com/thomporter/valid8r_node
 
-Or use bower or composer:
+Or use a package manager:
 
-### Installing Valid8r JavaScript via Bower
+### Installing Valid8r for JavaScript via Bower
 
-`bower install https://github.com/thomporter/valid8r`
+`bower install valid8r_js`
 
-### Installing Valid8r PHP via Composer
+### Installing Valid8r for Node via npm
 
-`composer install https://github.com/thomporter/valid8r`
+`npm install valid8r_node`
+
+### Installing Valid8r for PHP via Composer
+
+	{
+	  "require": {
+	    "valid8r/valid8r_php": "v0.0.2"
+	  }
+	}
+	
 
 ## Configuration
 
@@ -207,7 +236,7 @@ Validate email addresses:
 	{"rule": "email"}
 	{"rule": "email", "validator": "simple" } // very basic validator, will let a lot fly
 	{"rule": "email", "validator": "default" } // the default validator, works well. 
-	{"rule": "email", "validator": "rfc5322" } // full blow RFC 5322 RegExp 
+	{"rule": "email", "validator": "rfc5322" } // full blown RFC 5322 RegExp - not tested yet 
 
 the `validator` property defaults to "default" if not specified.
 
@@ -281,8 +310,20 @@ JavaScript:
 This seems like a BAD idea to me.  First, how I've done it above, it better be 
 the first rule.  Of course, you could iterate over the rules array and find the 
 one with the `rule` property set to `custom` and then proceed, but now things 
-are getting messy. I believe it best to declare your functions in the global 
-scope, and name them well: `acmeValidator_firstName` or whatever.  
+are getting messy. I believe it better to declare your functions in the global 
+scope, and name them well: `acmeValidator_firstName` or whatever.
+
+**Updated** - The JavaScript and Node versions both accept a customValidators
+property on the main configuration object you pass to Valid8r.  This is the
+preferred way of defining custom validators.  JavaScript Example:
+
+	var validator = new Valid8r({
+		customValidators: {
+			myValidator: function(field, value) { ... },
+			myOhterValidator: function(field, value) { ... }
+		},
+		...
+	});
 
 
 ### Conditional Validation
@@ -345,5 +386,7 @@ the conditions over and over.
 
 * Test the "Quick Example" code.
 * Mocha Browser Tests
-* AMD/Require browser support
+* AMD/Require browser support for JavaSript module.
 * AMD support for the node module.
+* Add ability to create "global conditionals"
+
