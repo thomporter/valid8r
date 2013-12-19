@@ -1,4 +1,4 @@
-![Valid8r - Validation for multiple programming languages.](https://github.com/thomporter/valid8r/logo.png)
+![Valid8r - Validation for multiple programming languages.](https://raw.github.com/thomporter/valid8r/master/logo.png)
 
 # Valid8r
 
