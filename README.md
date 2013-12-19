@@ -88,7 +88,7 @@ Kitchen Sink demo.  See each language's documentation for more.
 
 #### For JavaScript: 
 
-Clone the [JavaScript repo](https://github.com/thomporter/valid8r_node) and run npm install & start in the examples folder:
+Clone the [JavaScript repo](https://github.com/thomporter/valid8r_js) and run npm install & start in the examples folder:
 
 	git clone https://github.com/thomporter/valid8r_js
 	cd valid8r_js/examples
