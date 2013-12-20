@@ -32,7 +32,6 @@ filled in, and at least 5 characters long.
 
 	{
 		"my_field": {
-			"selector": "#my_field",
 			"rules": [
 				{ "rule": "required" },
 				{ "rule": "len", "min": 5 },
@@ -158,16 +157,29 @@ Valid8r uses JSON for configuration, making it simple to use across
 multiple languages and platforms.  The structure of the object is fairy simple:
 
 	{
-		"field": { // unique key that is also the key in the data array, eg $_POST for PHP.
-			"selector": "#field-id", // optional, used only for JavaScript in browser
-			"rules": [ // required - array of validation rules to run against data in field.
-			     {"rule": "rule_name"},
-			     {"rule": "another_rule_name", "someRuleOption": true},
-			]
-		}
+	  "field": { // unique key that is also the key in the data array, eg $_POST for PHP.
+	    "selector": "jQuerySelector", // optional, used only for JavaScript in browser
+	    "rules": [ // required - array of validation rules to run against data in field.
+	      {"rule": "rule_name"},
+	      {"rule": "another_rule_name", "someRuleOption": true},
+	    ]
+	  }
 	}
 
-That's it.  Nothing much to the rule files, they are simple and clean.  
+That's it.  Nothing much to the rule files, they are simple and clean.
+  
+**JavaScript Updated in v0.0.4:** It is no longer necessary to define the `selector` 
+property if you have an ID on the input that is the same as `field`.  eg:
+
+	&lt;input type="text" name="my_field" id="my_field" />
+	
+Can be defined as:
+
+	{
+	  "my_field": {
+	    "rules": [...]
+	  }
+	}
 
 ## Valid8r Rules
 
