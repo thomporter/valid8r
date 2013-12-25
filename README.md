@@ -1,3 +1,5 @@
+# HAPPY HOLIDAYS & A WONDERFUL NEW YEAR TO ALL
+
 ![Valid8r - Validation for multiple programming languages.](https://raw.github.com/thomporter/valid8r/master/logo.png)
 
 # Valid8r
