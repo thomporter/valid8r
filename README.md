@@ -271,7 +271,15 @@ Use the `url` rule to validate URLs, with or without protocols:
 * Add `host` property requiring the url be of a particular host.
 * Add `domain` property requiring host be of particular domain (less restrictive than the `host` option.)
 
+### ip
 
+Use the `ip` rule to validate IP addresses.  Set a `v` property on the rule to 
+require version 4 or 6, or leave it off to allow both!
+
+	{"rule":"ip"} // allows IPv4 or IPv6 addresses
+	{"rule":"ip", "v": 4} // allows IPv4 addresses
+	{"rule":"ip", "v": 6} // allows IPv6 addresses
+	
 ### checks
 
 Use the `checks` rule to validate that a certain number of checkboxes have been 
