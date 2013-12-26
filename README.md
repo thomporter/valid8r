@@ -314,24 +314,7 @@ declare your functions.
 
 #### Note
 
-I am uncertain about the "containing the function" idea - you can't store a 
-function in a JSON file, and since our JSON might be parsed by PHP or other 
-languages, how would that function look?  No, instead I see it might be 
-possible to load your JSON file, and attach the functions, perhaps like so in 
-JavaScript:
-	
-	$.get('/my-config.json', function(config) {
-		config.some_field.rules[0].func = function(field, value) { ... }
-		validator.setRules(config)
-	}
-	
-This seems like a BAD idea to me.  First, how I've done it above, it better be 
-the first rule.  Of course, you could iterate over the rules array and find the 
-one with the `rule` property set to `custom` and then proceed, but now things 
-are getting messy. I believe it better to declare your functions in the global 
-scope, and name them well: `acmeValidator_firstName` or whatever.
-
-**Updated** - The JavaScript and Node versions both accept a customValidators
+The JavaScript and Node versions both accept a customValidators
 property on the main configuration object you pass to Valid8r.  This is the
 preferred way of defining custom validators.  JavaScript Example:
 
@@ -343,6 +326,15 @@ preferred way of defining custom validators.  JavaScript Example:
 		...
 	});
 
+#### AJAX Note
+
+Asynchronous validation can be done in the browser, but requires you add the
+`async` property (equal to true) to your rule's definition:
+
+	{"rule":"custom","func":"myCustomAsynValidator", "async":true}
+
+Valid8r will not run `async` rules onSubmit - only onBlur as the user fills in
+your form.
 
 ### Conditional Validation
 
