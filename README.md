@@ -183,6 +183,22 @@ Can be defined as:
 	  }
 	}
 
+<a name="global-conditionals"></a>
+### Global Conditions
+
+In the event you need to use global conditions, you can slightly modify the 
+configuration object to look like such:
+
+	{
+		"_globalConditions": { ... conditions you want to use in multiple rules ... }
+		"_rules": { ... the original config object as described above ... },
+	}
+	
+Global Conditions are not automatically attached to rules, you still have to use
+the `when` property on a rule, setting it's value to the global condition key.
+See the <a href="#conditional-validation">Conditional Validation</a> section for 
+more details.
+
 ## Valid8r Rules
 
 Here we will document the rules for Valid8r.  These are available in all languages.
@@ -344,6 +360,7 @@ Asynchronous validation can be done in the browser, but requires you add the
 Valid8r will not run `async` rules onSubmit - only onBlur as the user fills in
 your form.
 
+<a name="conditional-validation"></a>
 ### Conditional Validation
 
 It is possible to attach conditional validation to any of the rules in your 
@@ -381,30 +398,30 @@ their website into another field.  So we'll have 2 radio buttons named
 `have_website`, one with value "Yes", the other value "No".  Next we'll have
 a text input, with the ID of `url`.  Here's the rules:
 
-{
-	"url": {
-		"conditions": {
-			"have_website": {
-				"field": "have_website",
-				"is": "Yes"
-			}
-		},
-		"rules": [
-			{"rule": "required", "when": "have_website"},
-			{"rule": "url", "when": "have_website"}
-		]
+	{
+		"url": {
+			"conditions": {
+				"have_website": {
+					"field": "have_website",
+					"is": "Yes"
+				}
+			},
+			"rules": [
+				{"rule": "required", "when": "have_website"},
+				{"rule": "url", "when": "have_website"}
+			]
+		}
 	}
-}
 
-I plan to rework the libraries to allow for globally defined conditions, so you 
-can easily disable validation across multiple fields without having to re-define
-the conditions over and over.
+If you need to use the same condition across multiple fields, you can restructure
+the configuration object slightly, as described above in the 
+<a href="#global-conditionals">Global Conditionals</a> section.
 
 ## TODO
 
 * Test the "Quick Example" code.
-* Mocha Browser Tests
+* ~~Mocha Browser Tests~~
 * AMD/Require browser support for JavaSript module.
 * AMD support for the node module.
-* Add ability to create "global conditionals"
+* ~~Add ability to create "global conditionals"~~ - All modules pushed to version 0.1.0 with this change.
 
